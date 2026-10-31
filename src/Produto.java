@@ -10,7 +10,7 @@ public class Produto {
         }
         /*this.nome = nome;
         this.codigo = codigo;
-        this.preco = preco;
+        this.preco = preco;K
         this.quantidade = quantidade;*/
     }
     //  SESSÃ0 GETTERS
