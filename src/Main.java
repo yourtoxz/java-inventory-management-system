@@ -1,6 +1,36 @@
 import java.util.Scanner;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class Main{
     static Scanner input = new Scanner(System.in);
+
+    //cadastro de produtos
+    static void cadastrarProd(){
+
+    }
+    //sistema de listagem
+    static void listarProd(){
+
+    }
+    //sistema de busca
+    static void buscarProd(){
+
+    }
+    // sistema de atualização
+    static void atualizarES(){
+
+    }
+    //sistema para exibir relatório
+    static void exibirRE(){
+
+    }
+    //sistema de remoção de produto
+    static void removerProd(){
+
+    }
     public static void main(String[] args){
         String op;
         boolean a = true;
@@ -35,7 +65,8 @@ public class Main{
                 } case "0": {
                     a = false;
                     System.out.println("encerrando sistema...");
-                } default -> {
+                    break;
+                } default: {
                     System.out.println("opcao inexistente.");
                 }
             }
