@@ -1,17 +1,24 @@
+import org.w3c.dom.ls.LSOutput;
+
+import java.sql.SQLOutput;
+
 public class Produto {
     private String nome;
-    private int codigo;
+    private final int codigo;
     private double preco;
     private int quantidade;
     // construtor
     public Produto(String nome, int codigo, double preco, int quantidade){
-        if (nome.isEmpty()){
-            System.out.println("o nome não pode ser vazio.");
-        }
-        /*this.nome = nome;
-        this.codigo = codigo;
-        this.preco = preco;
-        this.quantidade = quantidade;*/
+       try{
+           if(nome.isBlank()) throw new IllegalArgumentException(){
+           };
+           this.nome = nome;
+
+       } catch (IllegalArgumentException e){
+           System.out.println("nome invalido.");
+       }
+        if(codigo < 0 ){}
+       this.codigo = codigo;
     }
     //  SESSÃ0 GETTERS
     public String getNome() {
@@ -25,22 +32,15 @@ public class Produto {
         return this.quantidade;
     }
     // SESSÃO SETTERS
-    public void setNome(String newname){
-        if(newname.isBlank()){
+    public void setNome(String newname) {
+        if (newname.isBlank() || newname.isEmpty()) {
             System.out.println("não deixe o nome vazio.");
-        }else{
+        } else {
             this.nome = newname;
         }
-    }public void setCodigo(int newcodigo){
-        if(newcodigo == codigo){
-            System.out.println("codigo já registrado. insira outro.");
-        }else{
-            this.codigo = newcodigo;
-        }
-
     }
     public void setPreco(double newpreco){
-        if(newpreco < 0){
+        if(newpreco <= 0){
             System.out.println("insira um preco válido.");
         }else{
             this.preco = newpreco;
