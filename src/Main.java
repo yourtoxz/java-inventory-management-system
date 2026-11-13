@@ -1,40 +1,35 @@
 import java.util.Scanner;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.ArrayList;
-
-
 public class Main{
-    static Scanner input = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
 
-    //cadastro de produtos
-    static void cadastrarProd(){
-
-    }
-    //sistema de listagem
-    static void listarProd(){
+    //Product registration
+    static void registerProduct(){
 
     }
-    //sistema de busca
-    static void buscarProd(){
+    //Product listing
+    static void listProducts(){
 
     }
-    // sistema de atualização
-    static void atualizarES(){
+    //Product search
+    static void findProduct(){
 
     }
-    //sistema para exibir relatório
-    static void exibirRE(){
+    //Stock update
+    static void updateStock(){
 
     }
-    //sistema de remoção de produto
-    static void removerProd(){
+    //Report generation
+    static void displayReport(){
+
+    }
+    //Product removal
+    static void removeProduct(){
 
     }
     public static void main(String[] args){
-        String op;
-        boolean a = true;
-        while(a) {
+        String option;
+        boolean running = true;
+        while(running) {
             System.out.println("===== GESTÂO DE ESTOQUE ====");
             System.out.println();
             System.out.println("1 - Cadastrar Produto");
@@ -46,24 +41,30 @@ public class Main{
             System.out.println("0 - Sair");
             System.out.println();
             System.out.println("Escolha uma Opção: ");
-            op = input.nextLine();
+            option = scanner.nextLine();
 
-            switch (op){
+            switch (option){
 
                 case "1": {
-                    cadastrarProd();
+                    registerProduct();
+                    break;
                 } case "2": {
-                    listarProd();
+                    listProducts();
+                    break;
                 } case "3": {
-                    buscarProd();
+                    findProduct();
+                    break;
                 } case "4": {
-                    atualizarES();
+                    updateStock();
+                    break;
                 } case "5": {
-                    removerProd();
+                    removeProduct();
+                    break;
                 } case "6": {
-                    exibirRE();
+                    displayReport();
+                    break;
                 } case "0": {
-                    a = false;
+                    running = false;
                     System.out.println("encerrando sistema...");
                     break;
                 } default: {
