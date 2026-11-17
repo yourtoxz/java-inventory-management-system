@@ -1,12 +1,41 @@
-# Default ignored files
-/shelf/
-/workspace.xml
-# Markdown personal settings
-/markdown.xml
-# Editor-based HTTP Client requests
-/httpRequests/
+
 # IntelliJ IDEA
 .idea/
-# Compiled Java files
-out/
+*.iml
+/shelf/
+/workspace.xml
+/markdown.xml
+/httpRequests/
+
+# Compiled files
 *.class
+out/
+
+# Maven
+target/
+
+# Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+
+# Kotlin
+.kotlin
+
+# Mac OS
+.DS_Store
