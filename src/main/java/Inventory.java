@@ -1,11 +1,16 @@
 import java.util.ArrayList;
-    public class Inventory {
-        private final ArrayList<Product> inventory = new ArrayList<>();
+import java.util.Collections;
+import java.util.List;
+public class Inventory {
+        private final ArrayList<Product> inventory = new ArrayList<Product>();
         public void addProduct(Product product) {
-           if (existsByCode(product.getCode())){
-               throw new IllegalArgumentException("essa porra já existe");
-           }
-            inventory.add(product);
+            if (product == null){
+                throw new NullPointerException("Product cannot be null.");
+            }
+            if (existsByCode(product.getCode())){
+               throw new DuplicateProductCodeException("A product with this code already exists.");
+            }
+             inventory.add(product);
         }
         public boolean existsByCode(int code) {
             for (Product product : inventory) {
@@ -39,4 +44,7 @@ import java.util.ArrayList;
                 quantityToSet.setQuantity(newQuantity);
             return true;
         }
+        public List<Product> getProducts(){
+        return Collections.unmodifiableList(inventory);
+     }
     }
