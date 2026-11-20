@@ -73,7 +73,7 @@ mvn test
 
 ## Future Improvements
 
-- [ ] Complete automated unit tests
+- [x] Complete automated unit tests
 - [ ] Implement data persistence
 - [ ] Integrate PostgreSQL
 - [ ] Develop a REST API using Spring Boot
