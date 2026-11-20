@@ -50,7 +50,7 @@ src/
 Clone the repository:
 
 ```bash
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/yourtoxz/java-inventory-management-system.git
 ```
 
 Navigate to the project directory:
