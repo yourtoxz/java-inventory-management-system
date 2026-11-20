@@ -88,7 +88,7 @@ public class Main{
         inventory.addProduct(product);
         System.out.println("Product has been added in the inventory!");
     }
-    //Product listing
+    //                                  Product Listing
     static void listProducts(){
        List<Product> products = inventory.getProducts();
         if(products.isEmpty()){
