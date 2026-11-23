@@ -1,10 +1,19 @@
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.Scanner;
-public class Main{
-    
-    static Scanner scanner = new Scanner(System.in);
-    static final Inventory inventory = new Inventory();
+    package com.inventory;
+
+    import com.inventory.Exception.DuplicateProductCodeException;
+    import com.inventory.Model.Product;
+    import com.inventory.Service.InventoryService;
+
+
+    import java.math.BigDecimal;
+    import java.util.List;
+    import java.util.Scanner;
+
+    public class Main{
+
+        static Scanner scanner = new Scanner(System.in);
+        static AppConfig appConfig = new AppConfig();
+       private static final InventoryService inventoryService = appConfig.createInventoryService();
     //                             Validation Section
     static String validateProductName(){
         System.out.println("Give a name for the new product: ");
@@ -19,6 +28,7 @@ public class Main{
     }
     static int validateProductCode(){
         System.out.println("Give a code for the new product: ");
+
         while(true){
             String code = scanner.nextLine();
             int prodCode;
@@ -32,8 +42,8 @@ public class Main{
                 System.out.println("Please insert a valid code.");
                 continue;
             }
-            Product product = inventory.findByCode(prodCode);
-            if(product != null){
+            boolean productExists = inventoryService.existsByCode(prodCode);
+            if(productExists){
                 System.out.println("Already have a product with this code." +
                         " Please, try another code.");
                 continue;
@@ -85,12 +95,16 @@ public class Main{
         int prodQuantity = validateProductQuantity();
 
         Product product = new Product(prodName, prodCode, prodPrice, prodQuantity);
-        inventory.addProduct(product);
-        System.out.println("Product has been added in the inventory!");
+        try {
+            inventoryService.registerProduct(product);
+            System.out.println("Product has been added in the inventory!");
+        } catch (DuplicateProductCodeException e) {
+            System.out.println(e.getMessage());
+        }
     }
     //                                  Product Listing
     static void listProducts(){
-       List<Product> products = inventory.getProducts();
+       List<Product> products = inventoryService.getAllProducts();
         if(products.isEmpty()){
             System.out.println("The list is empty!");
             return;
@@ -118,7 +132,7 @@ public class Main{
                 System.out.println("Insert a valid code.");
                 continue;
             }
-            Product product = inventory.findByCode(findProdCode);
+            Product product = inventoryService.findByCode(findProdCode);
             if(product == null){
                 System.out.println("A product with this code not exist.");
                 continue;
@@ -146,7 +160,7 @@ public class Main{
                 System.out.println("Product code must be greater than zero.\n");
                 continue;
             }
-            Product product = inventory.findByCode(prodCode);
+            Product product = inventoryService.findByCode(prodCode);
             if (product == null) {
                 System.out.println("Product not found. Please try again.\n");
                 continue;
@@ -155,7 +169,7 @@ public class Main{
             System.out.println("Current quantity: " + product.getQuantity());
             int oldQuantity = product.getQuantity();
             int newQuantity = validateProductQuantity();
-            boolean updated = inventory.updateQuantity(prodCode, newQuantity);
+            boolean updated = inventoryService.updateQuantity(prodCode, newQuantity);
             if (updated) {
                 System.out.println("\n===== UPDATE SUCCESSFUL =====");
                 System.out.printf("Product: %s%n", product.getName());
@@ -171,7 +185,7 @@ public class Main{
     //                              Report Generation
     static void displayReport(){
         System.out.println("here is your report!");
-        List<Product> products = inventory.getProducts();
+        List<Product> products = inventoryService.getAllProducts();
         if(products.isEmpty()){
             System.out.println("There are no products to report.");
             return;
@@ -212,7 +226,7 @@ public class Main{
                     System.out.println("Product code must be greater than zero.\n");
                     continue;
                 }
-                Product product = inventory.findByCode(prodCode);
+                Product product = inventoryService.findByCode(prodCode);
                 if(product == null){
                     System.out.println("Product not found. Please try again.\n");
                     continue;
@@ -222,23 +236,19 @@ public class Main{
                 String option = scanner.nextLine();
                 switch (option){
                     case "y":
-                        boolean removed = inventory.removeProduct(prodCode);
+                        boolean removed = inventoryService.removeProduct(prodCode);
                         if (removed) {
                             System.out.println("Product has been removed.");
-                            break;
+                            return;
                         } else{
                             System.out.println("Not even possible remove this product.");
-                            continue;
                         }
                     case "n":
                         System.out.println("Product removal cancelled.");
                         return;
                     default:
                         System.out.println("Please, insert 'y' or 'n' to continue.");
-                        continue;
                 }
-                System.out.println();
-                return;
             }
         }
     public static void main(String[] args){
