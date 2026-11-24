@@ -23,7 +23,7 @@ Developed as a learning and portfolio project, focusing on object-oriented progr
 - Input validation and exception handling
 - Duplicate product code prevention
 
-## Project Structure
+## Initial Project Structure
 
 ```text
 src/
@@ -36,6 +36,49 @@ src/
 └── test/
     └── java/
         └── InventoryTest.java
+```
+## Actual Project Structure
+
+```text
+java-inventory-management-system/
+│
+├── pom.xml
+│
+└── src/
+    ├── main/
+    │   └── java/
+    │       └── com/
+    │           └── inventory/
+    │               │
+    │               ├── Main.java
+    │               ├── AppConfig.java
+    │               │
+    │               ├── Model/
+    │               │   └── Product.java
+    │               │
+    │               ├── Repository/
+    │               │   ├── InventoryRepository.java
+    │               │   └── ArrayListInventoryRepository.java
+    │               │
+    │               ├── Service/
+    │               │   └── InventoryService.java
+    │               │
+    │               └── Exception/
+    │                   └── DuplicateProductCodeException.java
+    │
+    └── test/
+        └── java/
+            └── com/
+                └── inventory/
+                    │
+                    ├── Model/
+                    │   └── ProductTest.java
+                    │
+                    ├── Repository/
+                    │   └── InventoryTest.java
+                    │
+                    └── Service/
+                        └── InventoryTest.java
 ```
 
 ## Getting Started
